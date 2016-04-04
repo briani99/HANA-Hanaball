@@ -1,0 +1,5 @@
+service namespace "I027737.HanaBall"  { 
+   "I027737.HanaBall.data::Match" as "MatchTable" 
+   keys generate local "ID";
+}
+

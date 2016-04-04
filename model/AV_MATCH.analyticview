@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Cube:cube xmlns:Cube="http://www.sap.com/ndb/BiModelCube.ecore" schemaVersion="1.5" id="AV_MATCH" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled">
+  <origin/>
+  <descriptions defaultDescription="Match Details"/>
+  <metadata changedAt="2013-06-21 12:23:18.322" createdAt="2013-06-21 12:18:09.445"/>
+  <localVariables/>
+  <privateMeasureGroup id="MeasureGroup">
+    <attributes>
+      <attribute id="MATCHID">
+        <descriptions defaultDescription="MATCHID"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="MATCHID"/>
+      </attribute>
+      <attribute id="DIV">
+        <descriptions defaultDescription="League"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="DIV"/>
+      </attribute>
+      <attribute id="DATE">
+        <descriptions defaultDescription="Date"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="DATE"/>
+      </attribute>
+      <attribute id="HOMETEAM">
+        <descriptions defaultDescription="Home Team"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HOMETEAM"/>
+      </attribute>
+      <attribute id="AWAYTEAM">
+        <descriptions defaultDescription="Away Team"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AWAYTEAM"/>
+      </attribute>
+      <attribute id="FTR">
+        <descriptions defaultDescription="FT Result"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="FTR"/>
+      </attribute>
+      <attribute id="HTR">
+        <descriptions defaultDescription="HT Result"/>
+        <keyMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HTR"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies>
+        <tableProxy centralTable="true">
+          <table schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match"/>
+        </tableProxy>
+      </tableProxies>
+      <joins/>
+      <layout>
+        <shapes>
+          <shape modelObjectName="I027737.HanaBall.data::Match" modelObjectNameSpace="HANABALL" modelObjectType="catalog">
+            <upperLeftCorner x="70" y="30"/>
+          </shape>
+        </shapes>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="FTHG" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="FT Home Goals"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="FTHG"/>
+      </measure>
+      <measure id="FTAG" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="FT Away Goals"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="FTAG"/>
+      </measure>
+      <measure id="HTHG" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="HT Home Goals"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HTHG"/>
+      </measure>
+      <measure id="HTAG" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="HT Away Goals"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HTAG"/>
+      </measure>
+      <measure id="HS" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Home Shots"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HS"/>
+      </measure>
+      <measure id="AS" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Away Shots"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AS"/>
+      </measure>
+      <measure id="HST" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Home Shots on Target"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HST"/>
+      </measure>
+      <measure id="AST" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Away Shots on Target"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AST"/>
+      </measure>
+      <measure id="HF" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Home Fouls"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HF"/>
+      </measure>
+      <measure id="AF" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Away Fouls"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AF"/>
+      </measure>
+      <measure id="HC" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Home Corners"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HC"/>
+      </measure>
+      <measure id="AC" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Away Corners"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AC"/>
+      </measure>
+      <measure id="HY" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Home Yellow Cards"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HY"/>
+      </measure>
+      <measure id="AY" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Away Yellow Cards"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AY"/>
+      </measure>
+      <measure id="HR" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Home Red Cards"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="HR"/>
+      </measure>
+      <measure id="AR" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Away Red Cards"/>
+        <measureMapping schemaName="HANABALL" columnObjectName="I027737.HanaBall.data::Match" columnName="AR"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <sharedDimensions/>
+    <layout id="AV_MATCH">
+      <shapes>
+        <shape modelObjectName="MEASURE_GROUP" modelObjectType="repository">
+          <upperLeftCorner x="52" y="61"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateMeasureGroup>
+</Cube:cube>

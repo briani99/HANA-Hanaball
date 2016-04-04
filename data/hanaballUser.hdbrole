@@ -1,0 +1,5 @@
+role I027737.HanaBall.data::hanaballUser {
+
+		catalog schema "HANABALL": SELECT;
+	    application privilege: I027737.HanaBall::Basic;
+}

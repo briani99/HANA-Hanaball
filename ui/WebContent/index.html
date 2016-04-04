@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <title>Canteen Menu</title>
+
+ 
+     <script 
+
+       src="https://sapui5.netweaver.ondemand.com/resources/sap-ui-core.js"
+       type="text/javascript" 
+       id="sap-ui-bootstrap" 
+       data-sap-ui-libs="sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.viz"
+
+       data-sap-ui-theme="sap_bluecrystal">
+
+     </script>
+
+     <script type="text/javascript">
+     
+    var oModel;
+ 	sap.ui.jsview("menuAdmin.menu", {
+		getControllerName : function() {
+						return "canteenAdmin.Canteen";
+		},
+		createContent : function(oController) {
+			
+		}
+	});
+ 	sap.ui.controller("menuAdmin.menu", {
+ 		
+ 	});
+ 	
+    var aContent = {};
+    // Create a SAP UI5 shell element
+    sap.ui.ux3.shell
+    var oShell = new sap.ui.ux3.Shell("tweetAppShell", {    
+      appIcon : "http://www.sap.com/global/images/SAPLogo.gif", 
+      appTitle : "Ireland Menu",
+  	});
+
+ 
+        // And now add so called WorksetItems to the shell
+        // Each WorksetItem consists in our case of a NavigationItem
+        // Notice that each Navigation Item is accessible via a unique key!
+
+
+        var WI = sap.ui.ux3.NavigationItem;
+        oShell.addWorksetItem(new WI({key : "wi_dublin",   text : "Dublin Menu}));
+        oShell.addWorksetItem(new WI({key : "wi_galway", text : "Galway Menu"})); 
+        // Just take the shell and place it in the html area called shellArea
+        
+		// Initialize the content for the first visible tab
+
+        oShell.setContent(getContent("wi_dublin"));
+
+            // Whenever a tab is selected in the sheet, set the content accordingly
+            oShell.attachWorksetItemSelected(function(oEvent) {
+            // get the key of the selected navigation item (built-in into the WorksetItem)
+			var itemKey = oEvent.getParameter("key");
+            oShell.setContent(getContent(itemKey));       
+            });
+            // Just take the shell and place it in the html area called shellArea
+            oShell.placeAt("shellArea");
+            // content generation and buffering
+            function getContent(id) {
+                    if (id == "wi_dublin") {
+                        if (!aContent[id]){                     
+                        	aContent[id] = new sap.ui.view({id:"idDublinView", viewName:"menuAdmin.menu", type:sap.ui.core.mvc.ViewType.JS});    
+                        }
+                    }
+                    if (id == "wi_galway") {
+                    	if (!aContent[id]){
+                    		aContent[id] = new sap.ui.view({id:"idGalwayView", viewName:"menuAdmin.menu", type:sap.ui.core.mvc.ViewType.JS});         
+                    	}   
+                    }
+                return aContent[id];
+            }
+         </script>
+</head>
+
+ 
+<body class="sapUiBody" >
+
+     <!-- And here is the div element shellArea where  the shell element will be posted to-->
+     <div id="shellArea"></div>
+
+</body>
+
+</html>

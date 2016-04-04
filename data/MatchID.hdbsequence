@@ -1,0 +1,3 @@
+schema= "HANABALL";
+start_with= 0000000001;
+depends_on_table= "I027737.HanaBall.data::Match";

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <title>HanaBall</title>
+
+ 
+     <script 
+
+       src="https://sapui5.netweaver.ondemand.com/resources/sap-ui-core.js"
+       type="text/javascript" 
+       id="sap-ui-bootstrap" 
+       data-sap-ui-libs="sap.ui.ux3, sap.ui.commons, sap.ui.table, sap.viz"
+
+       data-sap-ui-theme="sap_goldreflection">
+
+     </script>
+
+     <script type="text/javascript">
+     //Declarations
+     //Functions
+     
+  	function dataLoad(){
+ 		//Data is fetched From Parse
+		var Menu = Parse.Object.extend("Menu");
+		var query = new Parse.Query(Menu);
+		query.descending("createdAt");
+		
+		query.first({success: function(result){
+				  //Get the JSON objects
+				  var jsonmenu = result.get('JSONMenu');
+				  oModel = new sap.ui.model.json.JSONModel(jsonmenu);
+			      sap.ui.getCore().setModel(oModel);	     
+			      //Goto the menu screen
+			      app.to("admin");
+			      //Create and set the menu only if its not set already
+			      sap.ui.getCore().getElementById("menuScreen").addContent(createContent());
+			      },
+				  error: function(){
+				    
+				  }
+		});
+ 	}
+ 	
+ 	
+	function updateMenu(){
+		
+		var menuJSON = {"menu":[
+		                 {"date": "date",
+							"day":"Monday",
+							"dessert":"",
+							"main1":"Beef Meatballs with Penne Pasta",
+							"main2":"Lemon and Thyme Roast Chicken",
+							"mainveg":"Sweet Potato and Chickpea Curry",
+							"starter1":"Scoth Broth",
+							"starter2":"Mushroom & Sage Soup"},
+						{"date":"22/10/2013",
+								"day":"Tuesday",
+								"dessert":"Lemon Drizzle Cake",
+								"main1":"Beef and Wild Mushroom Stew",
+								"main2":"Fennel Baked Hake",
+								"mainveg":"Roast Vegetable and Feta Penne",
+								"starter1":"Tomato & Basil Soup",
+								"starter2":"Cream of Broccoli and Cauilflower Soup"},
+						{"date":"23/10/2013",
+								"day":"Wednesday",
+								"dessert":"Black Cherry Cheesecake",
+								"main1":"Roast Turkey and Stuffing and Gravy",
+								"main2":"Shepherds Pie",
+								"mainveg":"Italian Rice",
+								"starter1":"Potato & Leek Soup",
+								"starter2":"Celeriac and Carrot Soup"},
+						{"date":"24/10/13",
+								"day":"Thursday",
+								"dessert":"Pavlova with Chocolate and Hazelnuts",
+								"main1":"Tandori Chicken",
+								"main2":"Bacon Chop with Pineapple Salsa",
+								"mainveg":"Vegetarian Chilli",
+								"starter1":"Minestrone Soup",
+								"starter2":"Roast Pumpkin Soup"},
+						{"date":"25/10/2013",
+								"day":"Friday",
+								"dessert":"Victoria Sponge",
+								"main1":"Pulled Pork with Feta Yoghurt",
+								"main2":"Fish Tagine",
+								"mainveg":"Spring Rolls",
+								"starter1":"Vegetable Soup",
+								"starter2":"Chicken and Sweetcorn Soup"}
+						]};
+		
+		var Menu = Parse.Object.extend("dMenu");
+		var menu = new Menu();
+		 
+		menu.set("JSONMenu", menuJSON);
+		 
+		menu.save(null, {
+		  success: function(menu) {
+		    // Execute any logic that should take place after the object is saved.
+		    alert('New object created with objectId: ' + menu.id);
+		  },
+		  error: function(menu, error) {
+		    // Execute any logic that should take place if the save fails.
+		    // error is a Parse.Error with an error code and message.
+		    alert('Failed to create new object, with error code: ' + error.message);
+		  }
+		});
+	
+	}
+            var aContent = {};
+            // Create a SAP UI5 shell element
+            sap.ui.ux3.shell
+            var oShell = new sap.ui.ux3.Shell("tweetAppShell", {    
+              appIcon : "http://www.sap.com/global/images/SAPLogo.gif", 
+              appTitle : "HanaBall",
+          });
+
+ 
+        // And now add so called WorksetItems to the shell
+        // Each WorksetItem consists in our case of a NavigationItem
+        // Notice that each Navigation Item is accessible via a unique key!
+
+
+        var WI = sap.ui.ux3.NavigationItem;
+        oShell.addWorksetItem(new WI({key : "wi_match",   text : "All Results"}));
+        oShell.addWorksetItem(new WI({key : "wi_table", text : "League Table"})); 
+        // Just take the shell and place it in the html area called shellArea
+        
+		// Initialize the content for the first visible tab
+
+       	oShell.setContent(getContent("wi_match"));
+
+        // Whenever a tab is selected in the sheet, set the content accordingly
+        oShell.attachWorksetItemSelected(function(oEvent) {
+        // get the key of the selected navigation item (built-in into the WorksetItem)
+		var itemKey = oEvent.getParameter("key");
+           oShell.setContent(getContent(itemKey));       
+           });
+           // Just take the shell and place it in the html area called shellArea
+           oShell.placeAt("shellArea");
+           // content generation and buffering
+           function getContent(id) {
+                   if (id == "wi_match") {
+                       if (!aContent[id]){
+                       	sap.ui.localResources("hanagui");                     
+                       	aContent[id] = new sap.ui.view({id:"idodataMatchTable", viewName:"hanagui.odataMatchTable", type:sap.ui.core.mvc.ViewType.JS});    
+                       }
+                   }
+                   if (id == "wi_table") {
+                   	if (!aContent[id]){
+                   		sap.ui.localResources("hanagui"); 
+                   		aContent[id] = new sap.ui.view({id:"idLeagueTable", viewName:"hanagui.LeagueTable", type:sap.ui.core.mvc.ViewType.JS});         
+                   	}   
+                   }
+               return aContent[id];
+           }
+         </script>
+</head>
+
+ 
+<body class="sapUiBody" >
+
+     <!-- And here is the div element shellArea where  the shell element will be posted to-->
+     <div id="shellArea"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.2" id="CV_MATCHTABLE" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" runWithInvokerPrivileges="false">
+  <origin/>
+  <descriptions defaultDescription="League Table"/>
+  <metadata changedAt="2013-06-27 15:24:34.581" createdAt="2013-06-21 12:26:06.544"/>
+  <defaultSchema schemaName="ECC6"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="AV_MATCH" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/I027737.HanaBall.model/analyticviews/AV_MATCH</resourceUri>
+    </DataSource>
+    <DataSource id="AV_MATCH_1" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/I027737.HanaBall.model/analyticviews/AV_MATCH</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="HomeResult">
+      <viewAttributes>
+        <viewAttribute id="MATCHID"/>
+        <viewAttribute id="DIV"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="HOMETEAM"/>
+        <viewAttribute id="AWAYTEAM"/>
+        <viewAttribute id="FTHG"/>
+        <viewAttribute id="FTAG"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="SMALLINT" id="GOALDIFF">
+          <formula>&quot;FTHG&quot; - &quot;FTAG&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="SMALLINT" id="POINTS">
+          <formula>(&quot;GOALDIFF&quot; = 0) *1 + (&quot;GOALDIFF&quot;>0)*3</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#AV_MATCH">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATCHID" source="MATCHID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIV" source="DIV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE" source="DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOMETEAM" source="HOMETEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AWAYTEAM" source="AWAYTEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTHG" source="FTHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTAG" source="FTAG"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="AwayGoals">
+      <viewAttributes>
+        <viewAttribute id="MATCHID"/>
+        <viewAttribute id="DIV"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="HOMETEAM"/>
+        <viewAttribute id="AWAYTEAM"/>
+        <viewAttribute id="FTHG"/>
+        <viewAttribute id="FTAG"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="SMALLINT" id="GOALDIFF">
+          <formula>&quot;FTAG&quot; - &quot;FTHG&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="SMALLINT" id="POINTS">
+          <formula>(&quot;GOALDIFF&quot; = 0) *1 + (&quot;GOALDIFF&quot;>0)*3</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#AV_MATCH_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATCHID" source="MATCHID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIV" source="DIV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE" source="DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOMETEAM" source="HOMETEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AWAYTEAM" source="AWAYTEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTHG" source="FTHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTAG" source="FTAG"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="AllResults">
+      <viewAttributes>
+        <viewAttribute id="MATCHID"/>
+        <viewAttribute id="DIV"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="HOMETEAM"/>
+        <viewAttribute id="AWAYTEAM"/>
+        <viewAttribute id="FTHG"/>
+        <viewAttribute id="FTAG"/>
+        <viewAttribute id="GOALDIFF"/>
+        <viewAttribute id="POINTS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#HomeResult">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATCHID" source="MATCHID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIV" source="DIV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE" source="DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOMETEAM" source="HOMETEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AWAYTEAM" source="AWAYTEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTHG" source="FTHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTAG" source="FTAG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GOALDIFF" source="GOALDIFF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POINTS" source="POINTS"/>
+      </input>
+      <input node="#AwayGoals">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATCHID" source="MATCHID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIV" source="DIV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE" source="DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOMETEAM" source="AWAYTEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AWAYTEAM" source="HOMETEAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTAG" source="FTHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FTHG" source="FTAG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GOALDIFF" source="GOALDIFF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POINTS" source="POINTS"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="AllResults">
+    <descriptions defaultDescription="League Table">
+      <description language="EN"/>
+    </descriptions>
+    <attributes>
+      <attribute id="MATCHID">
+        <descriptions>
+          <description language="EN"/>
+        </descriptions>
+        <searchProperties/>
+        <keyMapping columnObjectName="AllResults" columnName="MATCHID"/>
+      </attribute>
+      <attribute id="HOMETEAM">
+        <descriptions>
+          <description language="EN"/>
+        </descriptions>
+        <searchProperties/>
+        <keyMapping columnObjectName="AllResults" columnName="HOMETEAM"/>
+      </attribute>
+      <attribute id="DATE">
+        <descriptions>
+          <description language="EN"/>
+        </descriptions>
+        <searchProperties/>
+        <keyMapping columnObjectName="AllResults" columnName="DATE"/>
+      </attribute>
+      <attribute id="AWAYTEAM">
+        <descriptions>
+          <description language="EN"/>
+        </descriptions>
+        <searchProperties/>
+        <keyMapping columnObjectName="AllResults" columnName="AWAYTEAM"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="FTHG" measureType="simple">
+        <measureMapping columnObjectName="AllResults" columnName="FTHG"/>
+      </measure>
+      <measure id="FTAG" measureType="simple">
+        <measureMapping columnObjectName="AllResults" columnName="FTAG"/>
+      </measure>
+      <measure id="GOALDIFF" measureType="simple">
+        <measureMapping columnObjectName="AllResults" columnName="GOALDIFF"/>
+      </measure>
+      <measure id="POINTS" measureType="simple">
+        <measureMapping columnObjectName="AllResults" columnName="POINTS"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="30"/>
+      </shape>
+      <shape modelObjectName="AV_MATCH" modelObjectNameSpace="DataSource">
+        <upperLeftCorner x="30" y="354"/>
+      </shape>
+      <shape modelObjectName="HomeResult" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="264"/>
+      </shape>
+      <shape modelObjectName="AV_MATCH_1" modelObjectNameSpace="DataSource">
+        <upperLeftCorner x="180" y="354"/>
+      </shape>
+      <shape modelObjectName="AwayGoals" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="160" y="264"/>
+      </shape>
+      <shape modelObjectName="AllResults" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="164"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

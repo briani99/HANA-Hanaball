@@ -1,0 +1,7 @@
+//TODO: Replace '<package_name>' with the full package of your role
+role I027737.HanaBall.data::hanaballAdmin
+	extends role I027737.HanaBall.data::hanaballUser 
+{
+	catalog schema "HANABALL": SELECT, INSERT, UPDATE, DELETE, DROP;
+	application privilege: I027737.HanaBall::Admin;	
+}

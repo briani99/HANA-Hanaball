@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>League Table</title>
+
+    <!-- 1.) Load SAPUI5 (from a remote server), select theme and control library -->
+    <script id="sap-ui-bootstrap"
+        src="https://sapui5.netweaver.ondemand.com/resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_goldreflection"
+        data-sap-ui-libs="sap.ui.table">
+    </script>
+
+  		<script>
+		   	sap.ui.localResources("hanagui");
+           	var view = sap.ui.view({id:"idLeagueTable", viewName:"hanagui.LeagueTable", type:sap.ui.core.mvc.ViewType.JS});
+  			view.placeAt("content");        
+  		</script>	  
+</head>  
+       	<body class="sapUiBody">
+              <div id="content"></div>
+       	</body>
+</html>

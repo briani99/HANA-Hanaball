@@ -1,0 +1,39 @@
+table.schemaName = "HANABALL";
+table.tableType = COLUMNSTORE; 
+table.description = "All Match data";
+table.columns = [ 
+
+{name = "MATCHID"; sqlType = NVARCHAR; nullable = false; length = 10; comment = "Match ID"; },
+{name = "DIV"; sqlType = NVARCHAR; nullable = false; length = 2; comment = "League"; },
+{name = "DATE"; sqlType = NVARCHAR; nullable = false; length = 10; comment = "Fixture Date"; },
+{name = "HOMETEAM"; sqlType = NVARCHAR; nullable = false; length = 30; comment = "Home Team"; }, 
+{name = "AWAYTEAM"; sqlType = NVARCHAR; nullable = false; length = 30; comment = "Away Team"; }, 
+
+{name = "FTHG"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Full Time Home Goals"; },
+{name = "FTAG"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Full Time Away Goals"; },
+{name = "FTR"; sqlType = NVARCHAR; nullable = false; length = 1; comment = "Full Time Result"; }, 
+
+{name = "HTHG"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Half-time Home Goals"; },
+{name = "HTAG"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Half-time Away Goals"; },
+{name = "HTR"; sqlType = NVARCHAR; nullable = false; length = 1; comment = "Half-time Result"; }, 
+
+{name = "HS"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Home shots"; },
+{name = "AS"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Away shots"; },
+
+{name = "HST"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Home shots on target"; },
+{name = "AST"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Away shots on target"; },
+
+{name = "HF"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Home Fouls"; },
+{name = "AF"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Away Fouls"; },
+
+{name = "HC"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Home Corners"; },
+{name = "AC"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Away Corners"; },
+
+{name = "HY"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Home Yellow Cards"; },
+{name = "AY"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Away Yellow Cards"; },
+
+{name = "HR"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Home Red Cards"; },
+{name = "AR"; sqlType = SMALLINT; nullable = false; defaultValue = "0"; comment = "Away Red Cards"; }
+
+]; 
+table.primaryKey.pkcolumns = ["MATCHID"];
